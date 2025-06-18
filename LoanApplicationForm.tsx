@@ -73,14 +73,19 @@ export default function LoanApplicationForm({ loanType, onBack }: LoanApplicatio
 
   const handleSubmit = () => {
     // Validate form
-    if (!formData.fullName || !formData.mobile || !formData.email || !selectedIdProof) {
-      Alert.alert('Error', 'Please fill all required fields');
+    if (!formData.fullName || !formData.mobile || !formData.email || !selectedIdProof || !formData.idProofNumber) {
+      Alert.alert('Error', 'Please fill all required fields (Name, Mobile, Email, ID Proof Type & Number)');
+      return;
+    }
+
+    if (!selfieUploaded || !idProofUploaded) {
+      Alert.alert('Error', 'Please upload your selfie and ID proof document');
       return;
     }
 
     Alert.alert(
       'Application Submitted!',
-      'Your loan application has been submitted successfully. We will contact you within 24 hours.',
+      `Your ${loanType} application has been submitted successfully. We will contact you within 24 hours.`,
       [{ text: 'OK', onPress: onBack }]
     );
   };
