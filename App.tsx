@@ -1,9 +1,13 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import LoanApplicationForm from './LoanApplicationForm';
 
 export default function App() {
+  const [currentScreen, setCurrentScreen] = useState('home');
+  const [selectedLoanType, setSelectedLoanType] = useState('');
+
   const loanTypes = [
     {
       id: 1,
@@ -75,9 +79,23 @@ export default function App() {
   ];
 
   const handleLoanPress = (loanType: any) => {
-    console.log('Loan selected:', loanType.title);
-    // Navigation logic will be added here
+    setSelectedLoanType(loanType.title);
+    setCurrentScreen('application');
   };
+
+  const handleBackToHome = () => {
+    setCurrentScreen('home');
+    setSelectedLoanType('');
+  };
+
+  if (currentScreen === 'application') {
+    return (
+      <LoanApplicationForm 
+        loanType={selectedLoanType}
+        onBack={handleBackToHome}
+      />
+    );
+  }
 
   return (
     <View style={styles.container}>
