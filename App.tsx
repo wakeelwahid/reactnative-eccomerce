@@ -158,32 +158,34 @@ export default function App() {
 
         {/* Game Cards */}
         <View style={styles.gamesContainer}>
-          {gameCards.map((game) => (
-            <TouchableOpacity key={game.id} style={[styles.gameCard, { backgroundColor: game.bgColor }]}>
-              <View style={styles.gameHeader}>
-                <Text style={[styles.gameTitle, { color: game.color }]}>
-                  {game.id <= 4 ? '⭐' : '💎'} {game.title}
-                </Text>
-              </View>
-              
-              <View style={styles.gameDetails}>
-                <View style={styles.gameTime}>
-                  <Text style={styles.timeLabel}>Open:</Text>
-                  <Text style={styles.timeValue}>{game.openTime}</Text>
+          <View style={styles.gameRow}>
+            {gameCards.map((game, index) => (
+              <TouchableOpacity key={game.id} style={[styles.gameCard, { backgroundColor: game.bgColor }]}>
+                <View style={styles.gameHeader}>
+                  <Text style={[styles.gameTitle, { color: game.color }]}>
+                    {game.id <= 4 ? '⭐' : '💎'} {game.title}
+                  </Text>
                 </View>
-                <View style={styles.gameTime}>
-                  <Text style={styles.timeLabel}>Close:</Text>
-                  <Text style={styles.timeValue}>{game.closeTime}</Text>
+                
+                <View style={styles.gameDetails}>
+                  <View style={styles.gameTime}>
+                    <Text style={styles.timeLabel}>Open:</Text>
+                    <Text style={styles.timeValue}>{game.openTime}</Text>
+                  </View>
+                  <View style={styles.gameTime}>
+                    <Text style={styles.timeLabel}>Close:</Text>
+                    <Text style={styles.timeValue}>{game.closeTime}</Text>
+                  </View>
                 </View>
-              </View>
-              
-              <Text style={styles.gameStatus}>{game.status}</Text>
-              
-              <TouchableOpacity style={[styles.playButton, { backgroundColor: game.color }]}>
-                <Text style={styles.playButtonText}>Play Now →</Text>
+                
+                <Text style={styles.gameStatus}>{game.status}</Text>
+                
+                <TouchableOpacity style={[styles.playButton, { backgroundColor: game.color }]}>
+                  <Text style={styles.playButtonText}>Play Now →</Text>
+                </TouchableOpacity>
               </TouchableOpacity>
-            </TouchableOpacity>
-          ))}
+            ))}
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -358,9 +360,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingBottom: 20,
   },
+  gameRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
   gameCard: {
+    width: '48%',
     borderRadius: 12,
-    padding: 15,
+    padding: 12,
     marginBottom: 15,
     borderWidth: 1,
     borderColor: '#444',
@@ -369,7 +377,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   gameTitle: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   gameDetails: {
@@ -382,27 +390,27 @@ const styles = StyleSheet.create({
   },
   timeLabel: {
     color: '#ccc',
-    fontSize: 14,
+    fontSize: 12,
   },
   timeValue: {
     color: '#fff',
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '500',
   },
   gameStatus: {
     color: '#00FF88',
-    fontSize: 14,
-    marginBottom: 15,
+    fontSize: 12,
+    marginBottom: 12,
     textAlign: 'center',
   },
   playButton: {
-    paddingVertical: 12,
+    paddingVertical: 10,
     borderRadius: 8,
     alignItems: 'center',
   },
   playButtonText: {
     color: '#000',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
   },
 });
