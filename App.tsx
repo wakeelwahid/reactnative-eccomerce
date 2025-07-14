@@ -56,9 +56,9 @@ export default function App() {
     {
       id: 6,
       title: 'Diamond King',
-      openTime: 'Sessions: 06:00, 08:10, 10:10, 12:10, 14:10, 16:10, 18:10, 20:10, 22:10',
-      closeTime: 'Duration: 1h 40m (locked after close, next opens at next session)',
-      status: 'Open for Play',
+      openTime: '06:00 AM',
+      closeTime: '10:10 PM',
+      status: 'Multiple Sessions',
       color: '#FF1493',
       bgColor: '#4A2A3A'
     }
